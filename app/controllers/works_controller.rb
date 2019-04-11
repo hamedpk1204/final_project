@@ -37,6 +37,13 @@ class WorksController < ApplicationController
     @work = Work.find(params[:id])
   end
 
+  def destroy
+    @work = Work.find(params[:id])
+    @@work.destroy
+    flash[:notice] = "Work was successfully deleted"
+    redirect_to work_path
+  end
+
   private
     def work_params
       params.require(:work).permit(:title, :description)
