@@ -1,0 +1,20 @@
+<h1>Listing all articles</h1>
+<p>
+  <%= link_to "Create a new work", new_work_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+
+  <% @works.each do |work| %>
+  <tr>
+    <td><%= work.title %></td>
+    <td><%= work.description %></td>
+    <td><%= link_to 'Edit', edit_work_path(work)%></td>
+    <td><%= link_to 'Show', work_path(work) %></td>
+  </tr>
+  <% end %>
+</table>
