@@ -1,21 +1,22 @@
-<h1>Listing all articles</h1>
-<p>
-  <%= link_to "Create a new work", new_work_path %>
-</p>
+<h1 align="center">Listing all Works</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
-
-  <% @works.each do |work| %>
-  <tr>
-    <td><%= work.title %></td>
-    <td><%= work.description %></td>
-    <td><%= link_to 'Edit', edit_work_path(work)%></td>
-    <td><%= link_to 'Show', work_path(work) %></td>
-    <td><%= link_to 'Delete', work_path(work), method: :delete, data: {confirm: "Are you sure?"} %></td>
-  </tr>
-  <% end %>
-</table>
+<% @works.each do |work| %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well well-lg">
+      <div class="work-title">
+        <%= link_to work.title, work_path(work) %>
+      </div>
+      <div class="work-body">
+        <%= truncate(work.description, length: 100) %></td>
+      </div>
+      <div class="work-actions">
+        <%= link_to "Edit this work", edit_work_path(work), class: "btn btn-xs btn-primary" %>
+        <%= link_to "Delete this Work", work_path(work), method: :delete,
+                    data: {confirm: "Are you sure you want to delete this work?"},
+                    class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
