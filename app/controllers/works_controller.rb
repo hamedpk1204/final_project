@@ -13,7 +13,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
-      flash[:notice] = "New Work Was Successfully Created"
+      flash[:success] = "New Work Was Successfully Created"
       redirect_to work_path(@work)
     else
       render 'new'
@@ -22,7 +22,7 @@ class WorksController < ApplicationController
 
   def update
     if @work.update(work_params)
-      flash[:notice] = "Work was successfully updated"
+      flash[:success] = "Work was successfully updated"
       redirect_to work_path(@work)
     else
       render 'edit'
@@ -35,7 +35,7 @@ class WorksController < ApplicationController
 
   def destroy
     @work.destroy
-    flash[:notice] = "Work was successfully deleted"
+    flash[:danger] = "Work was successfully deleted"
     redirect_to works_path
   end
 
