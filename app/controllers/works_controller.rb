@@ -1,14 +1,21 @@
 class WorksController < ApplicationController
-
   def new
     @work = Work.new
   end
 
   def create
-    #render plain: params[:work].inspect
     @work = Work.new(work_params)
-    @work.save
-    redirect_to works_show(@work)
+    if @work.save
+      flash[:notice] = "New Work Was Successfully Created"
+      redirect_to work_path(@work)
+    else
+      render 'new'
+    end
+  end
+
+  def show
+    @work = Work.find(params[:id])
+
   end
 
   private
