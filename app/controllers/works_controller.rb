@@ -1,5 +1,5 @@
 class WorksController < ApplicationController
-
+  before_action :set_work, only: [:update, :edit, :show, :destroy]
   def index
     @works = Work.all
   end
@@ -8,8 +8,6 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @work = Work.find(params[:id])
-
   end
 
   def create
@@ -23,7 +21,6 @@ class WorksController < ApplicationController
   end
 
   def update
-    @work = Work.find(params[:id])
     if @work.update(work_params)
       flash[:notice] = "Work was successfully updated"
       redirect_to work_path(@work)
@@ -34,17 +31,18 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find(params[:id])
   end
 
   def destroy
-    @work = Work.find(params[:id])
-    @@work.destroy
+    @work.destroy
     flash[:notice] = "Work was successfully deleted"
-    redirect_to work_path
+    redirect_to works_path
   end
 
   private
+    def set_work
+      @work = Work.find(params[:id])
+    end
     def work_params
       params.require(:work).permit(:title, :description)
     end
