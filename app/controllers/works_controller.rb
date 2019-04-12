@@ -12,6 +12,7 @@ class WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
+    @work.user = User.first
     if @work.save
       flash[:success] = "New Work Was Successfully Created"
       redirect_to work_path(@work)
