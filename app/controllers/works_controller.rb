@@ -1,7 +1,8 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:update, :edit, :show, :destroy]
+
   def index
-    @works = Work.all
+    @works = Work.paginate(page: params[:page], per_page: 5)
   end
   def new
     @work = Work.new
