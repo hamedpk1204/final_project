@@ -19,6 +19,9 @@
   <h4 class="center description"><strong>Description</strong></h4>
   <hr>
   <%= simple_format(@work.description) %>
+  <% if @work.categories.any? %>
+   <p>Categories: <%= render @work.categories %></p>
+  <% end %>
   <div class="work-actions">
     <% if logged_in? && (current_user == @work.user || current_user.admin?) %>
      <%= link_to "Edit this work", edit_work_path(@work), class: "btn btn-xs btn-primary" %>

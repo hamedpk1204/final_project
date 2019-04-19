@@ -49,7 +49,7 @@ class WorksController < ApplicationController
       @work = Work.find(params[:id])
     end
     def work_params
-      params.require(:work).permit(:title, :description)
+      params.require(:work).permit(:title, :description, category_ids: [])
     end
 
     def require_same_user

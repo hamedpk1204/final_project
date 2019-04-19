@@ -1,4 +1,4 @@
 class WorkCategory < ApplicationRecord
-  belong_to :work
-  belong_to :category
+  belongs_to :work
+  belongs_to :category
 end
