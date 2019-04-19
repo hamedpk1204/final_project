@@ -6,6 +6,7 @@ class WorksController < ApplicationController
   def index
     @works = Work.paginate(page: params[:page], per_page: 5)
   end
+  
   def new
     @work = Work.new
   end
@@ -15,7 +16,6 @@ class WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
-    current_user
     @work.user = current_user
     if @work.save
       flash[:success] = "New Work Was Successfully Created"
