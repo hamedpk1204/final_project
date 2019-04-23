@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :images
   namespace :api, defaults: { format: 'json'} do
   get 'works/search', to: 'works#search'
   resources :works

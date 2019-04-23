@@ -13,6 +13,17 @@ class Api::UsersController < ApiController
     end
   end
 
+  def create
+    user = Users.where(email:params[:email]).first
+    if user&.valid_password?(params[:password])
+      render json: user.as_jaso(only: [:id, :email, :authentication_token]), status: :created
+    else
+      head(:unauthorized)
+    end
+  end
+    
+
+
   def search
     render json: User.where('name LIKE ?', "%#{params[:name]}")
   end
